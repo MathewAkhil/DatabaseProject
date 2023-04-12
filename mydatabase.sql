@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 10, 2023 at 10:53 PM
+-- Host: localhost
+-- Generation Time: Apr 12, 2023 at 10:10 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mydatabase`
+-- Database: `test`
 --
 
 -- --------------------------------------------------------
@@ -148,6 +148,19 @@ CREATE TABLE `prescription` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rando`
+--
+
+CREATE TABLE `rando` (
+  `a` int(1) NOT NULL,
+  `b` int(2) NOT NULL,
+  `c` int(3) NOT NULL,
+  `d` int(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `review`
 --
 
@@ -178,7 +191,9 @@ ALTER TABLE `admin`
 -- Indexes for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`Appointment_ID`);
+  ADD PRIMARY KEY (`Appointment_ID`),
+  ADD KEY `Patient_ID` (`Patient_ID`),
+  ADD KEY `Doctor_ID` (`Doctor_ID`);
 
 --
 -- Indexes for table `doctor`
@@ -212,23 +227,34 @@ ALTER TABLE `patient`
 -- Indexes for table `pharmacy`
 --
 ALTER TABLE `pharmacy`
-  ADD PRIMARY KEY (`Pharmacy_ID`);
+  ADD PRIMARY KEY (`Pharmacy_ID`),
+  ADD KEY `Addess_ID` (`Addess_ID`);
 
 --
 -- Indexes for table `prescription`
 --
 ALTER TABLE `prescription`
-  ADD PRIMARY KEY (`Prescription_ID`);
+  ADD PRIMARY KEY (`Prescription_ID`),
+  ADD KEY `Order_ID` (`Order_ID`),
+  ADD KEY `Drug_ID` (`Drug_ID`);
 
 --
 -- Indexes for table `review`
 --
 ALTER TABLE `review`
-  ADD PRIMARY KEY (`Review_ID`);
+  ADD PRIMARY KEY (`Review_ID`),
+  ADD KEY `Appointment_ID` (`Appointment_ID`);
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`Patient_ID`) REFERENCES `patient` (`Patient_ID`),
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`Doctor_ID`) REFERENCES `doctor` (`Doctor_ID`);
 
 --
 -- Constraints for table `order`
@@ -243,6 +269,25 @@ ALTER TABLE `order`
 --
 ALTER TABLE `patient`
   ADD CONSTRAINT `Address Link` FOREIGN KEY (`Address_ID`) REFERENCES `address_retrieval` (`Address_ID`);
+
+--
+-- Constraints for table `pharmacy`
+--
+ALTER TABLE `pharmacy`
+  ADD CONSTRAINT `pharmacy_ibfk_1` FOREIGN KEY (`Addess_ID`) REFERENCES `address_retrieval` (`Address_ID`);
+
+--
+-- Constraints for table `prescription`
+--
+ALTER TABLE `prescription`
+  ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`Order_ID`) REFERENCES `order` (`Order_ID`),
+  ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`Drug_ID`) REFERENCES `drug` (`Drug_ID`);
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_ibfk_1` FOREIGN KEY (`Appointment_ID`) REFERENCES `appointment` (`Appointment_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
