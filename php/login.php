@@ -36,6 +36,7 @@ if(mysqli_num_rows($result) === 1) {
         $_SESSION['fname'] = $row['User_FName'];
         $_SESSION['id'] = $row['User_ID'];
         $_SESSION['lname'] = $row['User_LName'];
+        $_SESSION['user_type'] = $row['User_Type'];
         //header("Location: home.php");
         //exit();
 
