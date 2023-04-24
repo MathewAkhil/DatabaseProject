@@ -55,7 +55,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         </form>
 
 
-        <a href="logout.php">Logout</a>
+        <a href="../index.php">Logout</a>
         
     </body>
     </html>
