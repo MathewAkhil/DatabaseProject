@@ -93,7 +93,7 @@ include "../db_conn.php";
         ?>
         <br>
         Add a new prescription:
-        <form method="post" action="add_product.php">
+        <form method="post" action="insert_prescription.php">
             <label for="prescription_id">Prescription_ID:</label>
             <input type="text" name="prescription_id" id="prescription_id">
             
@@ -112,7 +112,7 @@ include "../db_conn.php";
 
         <br>
         Update a prescription:
-        <form method="post" action="update_product.php">
+        <form method="post" action="update_prescription.php">
             <label for="prescription_id">Prescription_ID:</label>
             <input type="text" name="prescription_id" id="prescription_id">
             
@@ -130,7 +130,7 @@ include "../db_conn.php";
             </form>
         <br>
         Delete a prescription:
-        <form action="delete_row.php" method="POST">
+        <form action="delete_prescription.php" method="POST">
             <label for="prescription_id">Enter the ID of the row to delete:</label>
             <input type="text" name="prescription_id" required>
             <button type="submit" name="delete_btn">Delete Prescription</button>

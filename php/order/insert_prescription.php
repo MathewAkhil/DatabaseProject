@@ -2,7 +2,7 @@
     <html>
     <head>
 
-        <title>Adding Product</title>
+        <title>Adding Prescription</title>
         <style>
             table {
                 border-collapse: collapse;

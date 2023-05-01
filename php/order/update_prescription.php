@@ -2,7 +2,7 @@
     <html>
     <head>
 
-        <title>Deleting Product</title>
+        <title>Updating Prescription</title>
         <style>
             table {
                 border-collapse: collapse;
@@ -29,27 +29,36 @@
 <?php
 include "../db_conn.php";
 
-// Check if the delete button was clicked and an ID was submitted
-if (isset($_POST['delete_btn']) && isset($_POST['prescription_id'])) {
-    $prescription_id = $_POST['prescription_id'];
+if (isset($_POST['prescription_id']) && isset($_POST['order_id']) && isset($_POST['drug_id']) && isset($_POST['quantity'])) {
+  // Get the form data
+    $var1 = $_POST['prescription_id'];
+    $var2 = $_POST['order_id'];
+    $var3 = $_POST['drug_id'];
+    $var4 = $_POST['quantity'];
 
-    // Prepare and execute the SQL statement
-    $sql = "DELETE FROM Prescription WHERE Prescription_ID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $prescription_id);
-    $stmt->execute();
+    // Update the item in the database
+    $sql = "UPDATE Prescription SET Order_ID='$var2', Drug_ID='$var3', Prescription_Quantity='$var4' WHERE Prescription_ID=$var1";
+    $result = mysqli_query($conn, $sql);
 
-    // Check if the deletion was successful
-    if ($stmt->affected_rows > 0) {
-        echo "Row deleted successfully";
+    if ($result) {
+        echo "Updated Table successfully!";
+        
     } else {
-        echo "Error deleting row";
+        echo "Error updating product: " . mysqli_error($conn);
     }
+}
+?>
 
+<?php
+        
+    // $presc = $_GET['presc'];
     $sql = "SELECT * FROM `prescription`";
     $result = mysqli_query($conn,$sql);
     if ($result->num_rows > 0) {
         // output data of each row
+        // while($row = $result->fetch_assoc()) {
+        //     echo "<br> Prescription_ID: ". $row["Prescription_ID"]. " - Drug_ID: ". $row["Drug_ID"]. "- Prescription_Quantity " . $row["Prescription_Quantity"] . "<br>";
+        // }
         echo "<table>";
         echo "<tr><th>Prescription ID</th><th>Drug ID</th><th>Prescription Quantity</th></tr>";
         while($row = $result->fetch_assoc()) {
@@ -59,12 +68,5 @@ if (isset($_POST['delete_btn']) && isset($_POST['prescription_id'])) {
     } else {
         echo "0 results";
     }
-
-    
-
-
-    // Close the prepared statement and the database connection
-    $stmt->close();
-    $conn->close();
-}
+        
 ?>
