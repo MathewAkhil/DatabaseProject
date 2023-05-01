@@ -20,7 +20,7 @@
             // Delete the review data in the database
             $query = "DELETE FROM review WHERE Review_ID = $review_id";
             $result = mysqli_query($conn, $query);
-            header("Location: patient_reviews.php");
+            header("Location: admin_reviews.php");
         }
     }
 ?>
