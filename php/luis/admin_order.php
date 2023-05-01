@@ -47,7 +47,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         
 
         ?>
-        <form action="prescription.php" method="GET">
+        <form action="admin_prescription.php" method="GET">
 
             <label for="presc"> Enter Order_ID: </label>
             <input type="text" name="presc" id="presc"><br>
@@ -56,6 +56,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 
 
         <a href="../index.php">Logout</a>
+        <a href="../admin_home.php">Home</a>
         
     </body>
     </html>
@@ -63,7 +64,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <?php
 }
 else {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 

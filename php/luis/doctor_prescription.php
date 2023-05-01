@@ -145,7 +145,8 @@ include "db_conn.php";
 
         
 
-        <a href="logout.php">Logout</a>
-        <a href="home.php">Home</a>
+        <a href="../logout.php">Logout</a>
+        <a href="doctor_order.php">Orders</a>
+        <a href="../doctor_home.php">Home</a>
     </body>
     </html>

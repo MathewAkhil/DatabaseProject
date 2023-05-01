@@ -13,7 +13,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     </head>
     <body>
         <h1>Hello, Doctor <?php echo $_SESSION['fname']; ?>!</h1>
-        <a href="luis/home.php">Orders</a>
+        <a href="luis/doctor_order.php">Orders</a>
         <br><br>
         <a href="appointment/doctor_appointment.php">Appointment</a>
         <br><br>
@@ -26,7 +26,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <?php
 }
 else {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>
