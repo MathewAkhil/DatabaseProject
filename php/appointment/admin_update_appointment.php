@@ -1,4 +1,8 @@
 <?php
+
+//Developed by Yingchen Dong
+//Administrators can update every current apooointment in this page
+
 // Connect to database
 include("../db_conn.php");
 

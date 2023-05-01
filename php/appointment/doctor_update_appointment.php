@@ -1,4 +1,8 @@
 <?php
+
+//Developed by Yingchen Dong
+//Doctors can update their current appointments in this page
+
 session_start();
 // Connect to database
 include("../db_conn.php");

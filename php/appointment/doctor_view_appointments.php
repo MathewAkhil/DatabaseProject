@@ -1,4 +1,8 @@
 <?php
+
+//Developed by Yingchen Dong
+//Doctors can view and delete their current appointments in this page
+
 session_start();
 ?>
 

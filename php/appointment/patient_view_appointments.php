@@ -1,4 +1,8 @@
 <?php
+
+//Developed by Yingchen Dong
+//Patient can view and cancel their current appointments in this page
+
 session_start();
 ?>
 <!DOCTYPE html>
@@ -80,7 +84,7 @@ session_start();
 			echo "<td>";
 			echo "<form method='post' action=''>";
 			echo "<input type='hidden' name='appointment_id' value='" . $row['Appointment_ID'] . "'/>";
-			echo "<input type='submit' name='delete' value='Remove'>";
+			echo "<input type='submit' name='delete' value='Cancel'>";
 			echo "</form>";
 			echo "</td>";
 			echo "</tr>";
