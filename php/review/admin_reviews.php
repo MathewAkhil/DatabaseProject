@@ -24,8 +24,8 @@
 </head>
 	
 <body>
-<h1>Hello, Patient <?php echo $_SESSION['fname']; ?>!</h1>
-	<h2>Viewing All Reviews | <a href="../patient_home.php">Home</a></h2>
+<h1>Hello, Administrator <?php echo $_SESSION['fname']; ?>!</h1>
+	<h2>Viewing All Reviews | <a href="../admin_home.php">Home</a></h2>
 
 	<table>
 		<tr>
