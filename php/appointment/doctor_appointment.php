@@ -1,4 +1,8 @@
 <?php
+
+//Developed by Yingchen Dong
+//Doctors can schedule appointments to specific time window with their ID in this page
+
 session_start();
 // Include the database connection file
 require_once('../db_conn.php');

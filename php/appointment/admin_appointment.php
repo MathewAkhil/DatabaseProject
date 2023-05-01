@@ -1,5 +1,7 @@
-
 <?php
+
+//Developed by Yingchen Dong
+//Administrators can schedule apooointments for doctors and patient in this page
 
 session_start();
 // Include the database connection file

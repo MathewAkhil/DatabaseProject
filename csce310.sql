@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2023 at 10:40 PM
+-- Generation Time: May 01, 2023 at 10:59 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,9 +32,21 @@ CREATE TABLE `address_retrieval` (
   `Address_Line1` varchar(255) NOT NULL,
   `Address_Line2` varchar(255) DEFAULT NULL,
   `City` varchar(255) NOT NULL,
-  `State` varchar(255) NOT NULL,
+  `State` varchar(2) NOT NULL,
   `ZIP` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `address_retrieval`
+--
+
+INSERT INTO `address_retrieval` (`Address_ID`, `Address_Line1`, `Address_Line2`, `City`, `State`, `ZIP`) VALUES
+(1, '111 First Street ', 'Apt 1', 'College Station', 'TX', 77840),
+(2, '222 Second Street', 'Apt 2', 'College Station', 'TX', 77840),
+(3, '333 Third Street', 'Apt 3', 'College Station', 'TX', 77840),
+(11, '717 University Dr', 'Unit 101', 'College Station', 'TX', 77840),
+(12, '2322 Texas Ave', NULL, 'College Station', 'TX', 77840),
+(13, '455 George Bush Dr W', NULL, 'College Station', 'TX', 77840);
 
 -- --------------------------------------------------------
 
@@ -50,6 +62,24 @@ CREATE TABLE `appointment` (
   `Appointment_StartTime` time NOT NULL,
   `Appointment_EndTime` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`Appointment_ID`, `Patient_ID`, `Doctor_ID`, `Appointment_Date`, `Appointment_StartTime`, `Appointment_EndTime`) VALUES
+(1, 101, 201, '2023-05-01', '13:00:00', '14:00:00'),
+(2, 102, 202, '2023-05-01', '14:00:00', '15:00:00'),
+(3, 103, 203, '2023-05-01', '15:00:00', '16:00:00'),
+(4, NULL, 201, '2023-05-01', '14:00:00', '15:00:00'),
+(5, NULL, 202, '2023-05-01', '15:00:00', '16:00:00'),
+(6, NULL, 203, '2023-05-01', '16:00:00', '17:00:00'),
+(11, 101, 201, '2023-05-08', '13:00:00', '14:00:00'),
+(12, 102, 202, '2023-05-08', '14:00:00', '15:00:00'),
+(13, 103, 203, '2023-05-08', '15:00:00', '16:00:00'),
+(14, NULL, 201, '2023-05-08', '14:00:00', '15:00:00'),
+(15, NULL, 202, '2023-05-08', '15:00:00', '16:00:00'),
+(16, NULL, 203, '2023-05-08', '16:00:00', '17:00:00');
 
 -- --------------------------------------------------------
 
@@ -67,6 +97,9 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`User_ID`, `Doctor_Speciality`) VALUES
+(201, 'Psychiatrist'),
+(202, 'Pediatrician'),
+(203, 'Dermatologist'),
 (222, NULL);
 
 -- --------------------------------------------------------
@@ -111,6 +144,9 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`User_ID`, `Address_ID`, `Patient_Allergens`) VALUES
+(101, 1, 'ALL NUTS'),
+(102, 2, 'PENICILLIN'),
+(103, 3, 'GLUTEN'),
 (111, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -124,6 +160,15 @@ CREATE TABLE `pharmacy` (
   `Pharmacy_Name` varchar(255) NOT NULL,
   `Addess_ID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pharmacy`
+--
+
+INSERT INTO `pharmacy` (`Pharmacy_ID`, `Pharmacy_Name`, `Addess_ID`) VALUES
+(1, 'CVS', 11),
+(2, 'Walgreens', 12),
+(3, 'Brookshire Brothers', 13);
 
 -- --------------------------------------------------------
 
@@ -148,7 +193,7 @@ CREATE TABLE `review` (
   `Review_ID` int(10) NOT NULL,
   `Appointment_ID` int(10) NOT NULL,
   `Star` int(1) NOT NULL,
-  `Feedback_Text` int(255) NOT NULL
+  `Feedback_Text` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -172,9 +217,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`User_ID`, `User_Email`, `User_Password`, `User_FName`, `User_LName`, `User_DOB`, `User_Type`) VALUES
-(0, 'admin@test.com', 'asdf', 'Admin', 'Istrator', '2001-01-01', 0),
-(111, 'patient@test.com', 'asdf', 'Ima', 'Patient', '2001-01-01', 1),
-(222, 'doctor@test.com', 'asdf', 'Ima', 'Doctor', '2001-01-01', 2);
+(0, 'admin@test.com', 'asdf', 'Test', 'Admin', '2001-01-01', 0),
+(1, 'arya.abbott@hospital.com', 'asdf', 'Arya', 'Abbott', '2001-01-01', 0),
+(100, 'patient@test.com', 'asdf', 'Test', 'Patient', '2001-01-01', 1),
+(101, 'pablo.peterson@gmail.com', 'asdf', 'Pablo', 'Peterson', '2001-01-01', 1),
+(102, 'paul.phillips@gmail.com', 'asdf', 'Paul', 'Phillips', '2001-01-01', 1),
+(103, 'patrick.parker@gmail.com', 'asdf', 'Patrick', 'Parker', '2001-01-01', 1),
+(200, 'doctor@test.com', 'asdf', 'Test', 'Doctor', '2001-01-01', 2),
+(201, 'daniel.davis@hospital.com', 'asdf', 'Daniel', 'Davis', '2001-01-01', 2),
+(202, 'david.dunn@hospital.com', 'asdf', 'David', 'Dunn', '2001-01-01', 2),
+(203, 'dylan.dixon@hospital.com', 'asdf', 'Dylan', 'Dixon', '2001-01-01', 2);
 
 --
 -- Triggers `user`
@@ -270,13 +322,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `address_retrieval`
 --
 ALTER TABLE `address_retrieval`
-  MODIFY `Address_ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `Address_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `Appointment_ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `Appointment_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `drug`
@@ -294,7 +346,7 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `pharmacy`
 --
 ALTER TABLE `pharmacy`
-  MODIFY `Pharmacy_ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `Pharmacy_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `prescription`
@@ -306,7 +358,7 @@ ALTER TABLE `prescription`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `Review_ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `Review_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`

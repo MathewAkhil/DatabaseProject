@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db_conn.php";
+include "../db_conn.php";
 
 if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     
@@ -10,12 +10,30 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <html>
     <head>
 
-        <title>HOME</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Admin Orders</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
     </head>
     <body>
-        <h1>Hello, <?php echo $_SESSION['user_name']; ?></h1>
-        <h2> Here is the homepage!</h2>
+        <h1> Check All Orders </h1>
         <?php
         // $sql = "SELECT * FROM `order`";
         // $result = mysqli_query($conn,$sql);
@@ -53,9 +71,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <input type="text" name="presc" id="presc"><br>
             <button type="submit"> Submit</button>
         </form>
-
-
-        <a href="../index.php">Logout</a>
+        
         <a href="../admin_home.php">Home</a>
         
     </body>

@@ -1,5 +1,33 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+
+        <title>Deleting Product</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
+    </head>
+    </html>
+
 <?php
-include "db_conn.php";
+include "../db_conn.php";
 
 // Check if the delete button was clicked and an ID was submitted
 if (isset($_POST['delete_btn']) && isset($_POST['prescription_id'])) {
