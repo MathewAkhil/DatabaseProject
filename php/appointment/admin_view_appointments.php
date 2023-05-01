@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<!--Developed by Yingchen Dong-->
+<!--Administrators can view and delete every appointment in this page -->
+
 <html>
 <head>
 	<title>View Appointments</title>

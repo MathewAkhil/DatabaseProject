@@ -1,4 +1,8 @@
 <?php
+
+//Developed by Yingchen Dong
+//Patient can choose and schedule current available appointments in this page
+
 session_start();
 ?>
 <!DOCTYPE html>
