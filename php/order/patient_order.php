@@ -69,9 +69,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <form action="patient_prescription.php" method="GET">
 
             <label for="presc"> Enter Order_ID: </label>
-            <input type="text" name="presc" id="presc"><br>
+            <input type="text" name="presc" id="presc">
             <button type="submit"> Submit</button>
         </form>
+        <br>
         
         <a href="../patient_home.php">Home</a>
         
