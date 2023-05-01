@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2023 at 10:59 PM
+-- Generation Time: May 01, 2023 at 11:34 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -97,10 +97,10 @@ CREATE TABLE `doctor` (
 --
 
 INSERT INTO `doctor` (`User_ID`, `Doctor_Speciality`) VALUES
+(200, NULL),
 (201, 'Psychiatrist'),
 (202, 'Pediatrician'),
-(203, 'Dermatologist'),
-(222, NULL);
+(203, 'Dermatologist');
 
 -- --------------------------------------------------------
 
@@ -144,10 +144,10 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`User_ID`, `Address_ID`, `Patient_Allergens`) VALUES
+(100, NULL, NULL),
 (101, 1, 'ALL NUTS'),
 (102, 2, 'PENICILLIN'),
-(103, 3, 'GLUTEN'),
-(111, NULL, NULL);
+(103, 3, 'GLUTEN');
 
 -- --------------------------------------------------------
 
