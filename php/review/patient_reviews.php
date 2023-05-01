@@ -81,13 +81,13 @@
 			echo "<td>" . ($Feedback_Text ? $Feedback_Text : "No review yet...") . "</td>";
 			echo "<td>" . ($Review_ID ? $Review_ID : "N/A") . "</td>";
 			echo "</tr>";
-			echo "</table>";
+			
 		}
 	
 		// Close the database connection
-		mysqli_close($conn);
-
-		?>
+		mysqli_close($conn); ?>
+		
+		</table>
 	<h3><a href="patient_add_review.php">Add Review</a> | <a href="patient_edit_review.php">Edit Review</a> | <a href="patient_delete_review.php">Delete Review</a></h3>
 </body>
 </html>
