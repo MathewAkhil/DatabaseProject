@@ -27,7 +27,7 @@
 
 <html>
 <head>
-    <title>Patient - Delete Review</title>
+    <title>Admin - Delete Review</title>
 </head>
 <body>
 

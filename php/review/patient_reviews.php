@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Patient - Viewing Reviews</title>
+	<title>Patient - View Reviews</title>
 	<style>
 		table {
 			border-collapse: collapse;
@@ -25,7 +25,7 @@
 	
 <body>
 <h1>Hello, Patient <?php echo $_SESSION['fname']; ?>!</h1>
-	<h2>Viewing Reviews | <a href="../patient_home.php">Home</a></h2>
+	<h2>Viewing Possible Reviews | <a href="../patient_home.php">Home</a></h2>
 
 	<table>
 		<tr>
