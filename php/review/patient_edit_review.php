@@ -30,7 +30,7 @@
 
 <html>
 <head>
-    <title>Patient - Add Review</title>
+    <title>Patient - Edit Review</title>
 </head>
 <body>
 

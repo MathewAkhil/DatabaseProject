@@ -2,92 +2,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Doctor - Viewing Reviews</title>
+	<title>Admin - Viewing Reviews</title>
 	<style>
 		table {
 			border-collapse: collapse;
 			width: 100%;
 		}
-
 		th, td {
 			text-align: left;
 			padding: 8px;
 		}
-
 		tr:nth-child(even) {
 			background-color: #f2f2f2;
 		}
-
 		th {
 			background-color: #4CAF50;
 			color: white;
 		}
+		h3 {text-align: center;}
 	</style>
 </head>
-	<a href="../doctor_home.php">Home</a>
+	
 <body>
-<h1>Hello, Dr. <?php echo $_SESSION['lname']; ?>!</h1>
-	<h2>Viewing Your Reviews</h2>
+<h1>Hello, Patient <?php echo $_SESSION['fname']; ?>!</h1>
+	<h2>Viewing All Reviews | <a href="../patient_home.php">Home</a></h2>
 
 	<table>
 		<tr>
-			<th>Patient's First Name</th>
-			<th>Patient's Last Name</th>
+			<th>Appointment ID</th>
+			<th>Doctor</th>
 			<th>Date</th>
             <th>5 Star Rating</th>
 			<th>Review</th>
+			<th>Revew ID</th>
 		</tr>
     
-		<!-- Let's fille the table -->
+		<!-- Let's fill out the table -->
         <?php
 		
 		// Establish a connection to the database
 		include('../db_conn.php');
         
 		// Get the patient ID
-		$doctor_id = $_SESSION['id'];
+		$patient_id = $_SESSION['id'];
 
 		// Create the query
-        $sql = "SELECT appointment.*, review.Star, review.Feedback_Text 
+        $sql = "SELECT appointment.*, review.Star, review.Feedback_Text, review.Review_ID 
 			FROM appointment
-			LEFT JOIN review ON appointment.Appointment_ID = review.Appointment_ID
-			WHERE appointment.Doctor_ID = $doctor_id";
+			LEFT JOIN review ON appointment.Appointment_ID = review.Appointment_ID";
 		
 		// Execute the query and fetch the results
 		$result = mysqli_query($conn, $sql);
 		
 		// Loop through the results and display the details
 		while ($row = mysqli_fetch_assoc($result)) {
-			
+
 			// Fetch the Doctor's Last Name
-			$patient_id = $row['Patient_ID'];
-			$patient_query = "SELECT * FROM user where User_ID = $patient_id";
-			$patient_result = mysqli_query($conn, $patient_query);
-			$patient_row = mysqli_fetch_assoc($patient_result);
+			$doctor_id = $row['Doctor_ID'];
+			$doctor_query = "SELECT * FROM user where User_ID = $doctor_id";
+			$doctor_result = mysqli_query($conn, $doctor_query);
+			$doctor_row = mysqli_fetch_assoc($doctor_result);
 			
 			// Set up info to be displayed
-			//$Appointment_ID = $row['Appointment_ID'];
-			$Patient_FName = $patient_row['User_FName'];
-			$Patient_LName = $patient_row['User_LName'];
+			$Appointment_ID = $row['Appointment_ID'];
+			$Doctor_LName = $doctor_row['User_LName'];
 			$Appointment_Date = $row['Appointment_Date'];
 			$Star_Rating = $row['Star'];
 			$Feedback_Text = $row['Feedback_Text'];
+			$Review_ID = $row['Review_ID'];
 
 			// Display info on table
 			echo "<tr>";
-			//echo "<td>" . $Appointment_ID . "</td>";
-			echo "<td>" . $Patient_FName . "</td>";
-			echo "<td>" . $Patient_LName . "</td>";
+			echo "<td>" . $Appointment_ID . "</td>";
+			echo "<td>Dr. " . $Doctor_LName . "</td>";
 			echo "<td>" . $Appointment_Date . "</td>";
 			echo "<td>" . ($Star_Rating ? $Star_Rating : "No rating yet...") . "</td>";
 			echo "<td>" . ($Feedback_Text ? $Feedback_Text : "No review yet...") . "</td>";
+			echo "<td>" . ($Review_ID ? $Review_ID : "N/A") . "</td>";
 			echo "</tr>";
-
+			echo "</table>";
 		}
 	
 		// Close the database connection
 		mysqli_close($conn);
 
 		?>
+	<h3><a href="admin_delete_review.php">Delete Review</a></h3>
 </body>
 </html>

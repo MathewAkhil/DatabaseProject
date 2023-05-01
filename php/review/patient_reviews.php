@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>View Reviews</title>
+	<title>Patient - Viewing Reviews</title>
 	<style>
 		table {
 			border-collapse: collapse;
