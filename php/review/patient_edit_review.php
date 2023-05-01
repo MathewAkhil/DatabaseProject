@@ -54,5 +54,6 @@
         <input type="submit" name="submit" value="Update Review">
 
     </form>
+    <h3><a href="patient_add_review.php">Add Review</a> | <a href="patient_edit_review.php">Edit Review</a> | <a href="patient_delete_review.php">Delete Review</a></h3>
 </body>
 </html>
