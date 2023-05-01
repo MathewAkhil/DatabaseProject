@@ -1,4 +1,7 @@
 <?php
+    // Developed by Cyrus Buhariwala
+    // Administrators can delete a review using this page.
+
     session_start();
     
     // Include the database connection file

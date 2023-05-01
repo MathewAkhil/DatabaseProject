@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start();
+    // Developed by Cyrus Buhariwala
+    // Administrators can view ALL reviews using this page.
+	// Administrator can ONLY delete reviews, as they should not be able to leave or edit reviews.
+?>
 <!DOCTYPE html>
 <html>
 <head>

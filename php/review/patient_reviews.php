@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php session_start();
+	// Developed by Cyrus Buhariwala
+    // Patients can view reviews for THEIR OWN appointments using this page.
+	// Doctors can ONLY view their reviews, as they should not be able to add/edit/delete reviews for themselves.
+		// To delete a review, they would have to ask an administrator to do so.
+?>
 <!DOCTYPE html>
 <html>
 <head>
