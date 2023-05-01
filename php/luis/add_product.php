@@ -1,5 +1,34 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+
+        <title>Adding Product</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
+    </head>
+    </html>
+
+
 <?php
-include "db_conn.php";
+include "../db_conn.php";
 
 // Get the form data
 $prescription_id = $_POST['prescription_id'];

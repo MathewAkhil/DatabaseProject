@@ -1,15 +1,34 @@
 <?php
 
 session_start();
-include "db_conn.php";
+include "../db_conn.php";
 
 ?>
 <!DOCTYPE html>
     <html>
     <head>
 
-        <title>HOME</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Admin Prescriptions</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
     </head>
     <body>
         
@@ -117,35 +136,7 @@ include "db_conn.php";
             <button type="submit" name="delete_btn">Delete Prescription</button>
         </form>
         <br>
-
-        <!-- Add a user:
-        <form action="add_user.php" method="POST">
-            <label for="fname">First Name:</label>
-            <input type="text" name="fname" required>
-            <br>
-            <label for="lname">Last Name:</label>
-            <input type="text" name="lname" required>
-            <br>
-            <label for="email">Email:</label>
-            <input type="text" name="email" required>
-            <br>
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-            <br>
-            <label for="DOB">DOB:</label>
-            <input type="date" name="DOB" required>
-            <br>
-            <label for="user_type">User Type:</label>
-            <input type="text" name="user_type" required>
-
-
-
-            <button type="submit" name="enter">Enter</button>
-        </form> -->
-
         
-
-        <a href="../logout.php">Logout</a>
         <a href="admin_order.php">Orders</a>
         <a href="../admin_home.php">Home</a>
     </body>

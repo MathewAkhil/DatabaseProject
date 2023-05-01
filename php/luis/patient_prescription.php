@@ -1,17 +1,37 @@
 <?php
 
 session_start();
-include "db_conn.php";
+include "../db_conn.php";
 
 ?>
 <!DOCTYPE html>
     <html>
     <head>
 
-        <title>HOME</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Patient Prescription</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+        </style>
     </head>
     <body>
+        
         
         <h1> Here is the Prescription Page </h1>
         
@@ -74,7 +94,7 @@ include "db_conn.php";
         ?>
         <br>        
 
-        <a href="../logout.php">Logout</a>
+        
         <a href="patient_order.php">Orders</a>
         <a href="../patient_home.php">Home</a>
     </body>
