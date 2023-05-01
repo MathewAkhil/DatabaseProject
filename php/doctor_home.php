@@ -17,6 +17,8 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <br><br>
         <a href="appointment/doctor_appointment.php">Appointment</a>
         <br><br>
+        <a href="review/doctor_reviews.php">Reviews</a>
+        <br><br>
         <a href="logout.php">Logout</a>
     </body>
     </html>

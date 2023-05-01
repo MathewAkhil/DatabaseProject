@@ -1,0 +1,90 @@
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Reviews</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th, td {
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+
+		th {
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
+</head>
+	<a href="../patient_home.php">Home</a>
+<body>
+<h1>Hello, Patient <?php echo $_SESSION['fname']; ?>!</h1>
+	<h2>Viewing Reviews</h2>
+
+	<table>
+		<tr>
+			<th>Doctor</th>
+			<th>Date</th>
+            <th>5 Star Rating</th>
+			<th>Review</th>
+		</tr>
+    
+		<!-- Let's fille the table -->
+        <?php
+		
+		// Establish a connection to the database
+		include('../db_conn.php');
+        
+		// Get the patient ID
+		$patient_id = $_SESSION['id'];
+
+		// Create the query
+        $sql = "SELECT appointment.*, review.Star, review.Feedback_Text 
+			FROM appointment
+			LEFT JOIN review ON appointment.Appointment_ID = review.Appointment_ID
+			WHERE appointment.Patient_ID = $patient_id";
+		
+		// Execute the query and fetch the results
+		$result = mysqli_query($conn, $sql);
+		
+		// Loop through the results and display the details
+		while ($row = mysqli_fetch_assoc($result)) {
+
+			// Fetch the Doctor's Last Name
+			$doctor_id = $row['Doctor_ID'];
+			$doctor_query = "SELECT * FROM user where User_ID = $doctor_id";
+			$doctor_result = mysqli_query($conn, $doctor_query);
+			$doctor_row = mysqli_fetch_assoc($doctor_result);
+			
+			// Set up info to be displayed
+			//$Appointment_ID = $row['Appointment_ID'];
+			$Doctor_LName = $doctor_row['User_LName'];
+			$Appointment_Date = $row['Appointment_Date'];
+			$Star_Rating = $row['Star'];
+			$Feedback_Text = $row['Feedback_Text'];
+
+			// Display info on table
+			echo "<tr>";
+			//echo "<td>" . $Appointment_ID . "</td>";
+			echo "<td>Dr. " . $Doctor_LName . "</td>";
+			echo "<td>" . $Appointment_Date . "</td>";
+			echo "<td>" . ($Star_Rating ? $Star_Rating : "No rating yet...") . "</td>";
+			echo "<td>" . ($Feedback_Text ? $Feedback_Text : "No review yet...") . "</td>";
+			echo "</tr>";
+
+		}
+	
+		// Close the database connection
+		mysqli_close($conn);
+
+		?>
+</body>
+</html>
