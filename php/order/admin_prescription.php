@@ -137,7 +137,8 @@ include "../db_conn.php";
         </form>
         <br>
         
-        <a href="admin_order.php">Orders</a>
         <a href="../admin_home.php">Home</a>
+        <a href="admin_order.php">Orders</a>
+        
     </body>
     </html>

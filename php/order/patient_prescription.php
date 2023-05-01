@@ -94,8 +94,7 @@ include "../db_conn.php";
         ?>
         <br>        
 
-        
-        <a href="patient_order.php">Orders</a>
         <a href="../patient_home.php">Home</a>
+        <a href="patient_order.php">Orders</a>
     </body>
     </html>

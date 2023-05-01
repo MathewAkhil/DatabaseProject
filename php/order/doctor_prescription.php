@@ -136,8 +136,8 @@ include "../db_conn.php";
             <button type="submit" name="delete_btn">Delete Prescription</button>
         </form>
         <br>
-        
-        <a href="doctor_order.php">Orders</a>
+
         <a href="../doctor_home.php">Home</a>
+        <a href="doctor_order.php">Orders</a>
     </body>
     </html>
