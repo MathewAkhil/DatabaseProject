@@ -1,4 +1,8 @@
 <?php
+//Developed by Luis Martinez Morales
+//Doctors can see all of the Orders with their Doctor_ID. They can submit
+//a request to see specific Oorders which takes them to the Prescription Page
+
 session_start();
 include "../db_conn.php";
 

@@ -1,4 +1,7 @@
 <?php
+//Developed by Luis Martinez Morales
+//Patients can see all of the Prescriptions with the Order_ID they submitted. They can also see the Drugs Table. 
+//They can also go back to Orders or to the Home page.
 
 session_start();
 include "../db_conn.php";

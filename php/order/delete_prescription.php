@@ -1,3 +1,8 @@
+<!-- 
+//Developed by Luis Martinez Morales
+//This page is used by both the Administrator and the Doctor to Delete a Prescription
+//It outputs the entire Prescription Table.    
+-->
 <!DOCTYPE html>
     <html>
     <head>
