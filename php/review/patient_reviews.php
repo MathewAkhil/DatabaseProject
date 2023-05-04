@@ -7,25 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../styles.css">
 	<title>Patient - View Reviews</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			text-align: left;
-			padding: 8px;
-		}
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-		h3 {text-align: center;}
-	</style>
 </head>
 	
 <body>
@@ -88,7 +71,9 @@
 			echo "</tr>";
 			
 		}
-	
+		
+		echo "</table>";
+
 		// Close the database connection
 		mysqli_close($conn); ?>
 		

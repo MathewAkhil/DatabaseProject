@@ -7,32 +7,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../styles.css">
 	<title>Doctor - View Reviews</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		th, td {
-			text-align: left;
-			padding: 8px;
-		}
-
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-	</style>
 </head>
-	<a href="../doctor_home.php">Home</a>
 <body>
 <h1>Hello, Dr. <?php echo $_SESSION['lname']; ?>!</h1>
-	<h2>Viewing Your Reviews</h2>
+	<h2>Viewing Your Reviews | <a href="../doctor_home.php">Home</a></h2>
 
 	<table>
 		<tr>
@@ -43,7 +23,7 @@
 			<th>Review</th>
 		</tr>
     
-		<!-- Let's fille the table -->
+		<!-- Let's fill the table -->
         <?php
 		
 		// Establish a connection to the database
@@ -89,7 +69,9 @@
 			echo "</tr>";
 
 		}
-	
+		
+		echo "</table>";
+
 		// Close the database connection
 		mysqli_close($conn);
 
