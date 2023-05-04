@@ -4,6 +4,7 @@
 //a request to see specific Oorders which takes them to the Prescription Page
 
 session_start();
+// Establish a connection to the database
 include "../db_conn.php";
 
 if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
@@ -15,44 +16,18 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <head>
 
         <title>Admin Orders</title>
-        <style>
-            table {
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            th, td {
-                text-align: left;
-                padding: 8px;
-            }
-
-            tr:nth-child(even) {
-                background-color: #f2f2f2;
-            }
-
-            th {
-                background-color: #4CAF50;
-                color: white;
-            }
-        </style>
+        <link rel="stylesheet" href="../styles.css">
     </head>
     <body>
         <h1> Check All Orders </h1>
         <?php
-        // $sql = "SELECT * FROM `order`";
-        // $result = mysqli_query($conn,$sql);
-        // if ($result->num_rows > 0) {
-        //     // output data of each row
-        //     while($row = $result->fetch_assoc()) {
-        //         echo "<br> Order_ID: ". $row["Order_ID"]. " - Doctor_ID: ". $row["Doctor_ID"]. "- Pharmacy_ID " . $row["Pharmacy_ID"] . "<br>";
-        //     }
-        // } else {
-        //     echo "0 results";
-        // }
         
+        // Create the query
         $sql = "SELECT * FROM `order`";
+        // Execute the query and fetch the results
         $result = mysqli_query($conn, $sql);
         
+        // Loop through the results and display the details
         if ($result->num_rows > 0) {
             echo "<table>";
             echo "<tr><th>Order ID</th><th>Doctor ID</th><th>Pharmacy ID</th></tr>";
@@ -66,8 +41,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             echo "0 results";
         }
         
-        
-
+        // entering the Order_ID to display the asociated prescriptions
         ?>
         <form action="admin_prescription.php" method="GET">
 
@@ -77,6 +51,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         </form>
         <br>
         
+        <!-- Button to go to homepage -->
         <a href="../admin_home.php">Home</a>
         
     </body>
@@ -85,6 +60,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <?php
 }
 else {
+    // If you are signed out or any other errors, go back to index.php
     header("Location: ../index.php");
     exit();
 }

@@ -4,6 +4,7 @@
 //They can also go back to Orders or to the Home page.
 
 session_start();
+// Establish a connection to the database
 include "../db_conn.php";
 
 ?>
