@@ -46,7 +46,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <form action="admin_prescription.php" method="GET">
 
             <label for="presc"> Enter Order_ID: </label>
-            <input type="text" name="presc" id="presc">
+            <input type="text" name="presc" id="presc" required>
             <button type="submit"> Submit</button>
         </form>
         <br>
