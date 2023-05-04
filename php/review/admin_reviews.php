@@ -6,25 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../styles.css">
 	<title>Admin - View Reviews</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			text-align: left;
-			padding: 8px;
-		}
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-		h3 {text-align: center;}
-	</style>
 </head>
 	
 <body>
@@ -84,8 +67,9 @@
 			echo "<td>" . ($Feedback_Text ? $Feedback_Text : "No review yet...") . "</td>";
 			echo "<td>" . ($Review_ID ? $Review_ID : "N/A") . "</td>";
 			echo "</tr>";
-			echo "</table>";
 		}
+		
+		echo "</table>";
 	
 		// Close the database connection
 		mysqli_close($conn);
