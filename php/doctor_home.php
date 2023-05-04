@@ -12,7 +12,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <h1>Hello, Doctor <?php echo $_SESSION['fname']; ?>!</h1>
+        <h1>Hello, Dr. <?php echo $_SESSION['lname']; ?>!</h1>
         <a href="order/doctor_order.php">Orders</a>
         <br><br>
         <a href="appointment/doctor_appointment.php">Appointment</a>
