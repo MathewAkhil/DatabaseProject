@@ -13,7 +13,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     </head>
     <body>
         <h1>Hello, Administrator <?php echo $_SESSION['fname']; ?>!</h1>
-        <a href="order/admin_order.php">Orders</a>
+        <a href="admin_profile.php">Profile</a>
+        <br><br>
+        <a href="luis/admin_order.php">Orders</a>
         <br><br>
         <a href="appointment/admin_appointment.php">Appointment</a>
         <br><br>
