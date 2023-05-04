@@ -23,9 +23,6 @@
         if(mysqli_num_rows($result) == 0 && mysqli_num_rows($r) == 0) {
             echo "Error: This account does not exist";
         }
-        // else if($checkID != 2) {
-        //     echo "Error: This user is not a doctor";
-        // }
         else {
 
             $checkID = "SELECT User_Type FROM user WHERE User_ID = '$adminID'";
@@ -64,7 +61,7 @@
         $emailDU = $_POST['emailAdminUpdate'];
         $passwordDU = $_POST['passwordAdminUpdate'];
         $dobDU = $_POST['dobAdminUpdate'];
-        $changeUserAU = $_POST['changeAdminUser'];
+        // $changeUserAU = $_POST['changeAdminUser'];
 
 
         // Check if there is already a review for this appointment
@@ -78,9 +75,6 @@
             if(mysqli_num_rows($result) == 0) {
                 echo "Error: This user does not exist. Please verify the info you have input and try again.";
             }
-            // else if($checkID != 2) {
-            //     echo "Error: This user is not a doctor";
-            // }
             else {
 
                 $checkID = "SELECT User_Type FROM user WHERE User_ID = '$adminID'";
@@ -120,9 +114,9 @@
                         $query .= "User_DOB='$dobDU',";
                     }
 
-                    if (!empty($changeUserAU)) {
-                        $query .= "User_Type='$changeUserAU',";
-                    }
+                    // if (!empty($changeUserAU)) {
+                    //     $query .= "User_Type='$changeUserAU',";
+                    // }
 
                     $query = rtrim($query, ","); // Remove the trailing comma
                     $query .= " WHERE User_ID='$adminID'";
@@ -204,10 +198,10 @@
             <input type="date" name="dobAdminUpdate">
         </div>
 
-        <div>
+        <!-- <div>
             <label for="changeAdminUser">User Type</label>
             <input type="text" name="changeAdminUser">
-        </div>
+        </div> -->
 
         <div>
             <input type="submit" name="submit" value="Save Changes">

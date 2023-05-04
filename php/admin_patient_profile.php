@@ -58,7 +58,7 @@
         $passwordPU = $_POST['passwordPatientUpdate'];
         $dobPU = $_POST['dobPatientUpdate'];
         $allergenPU = $_POST['allergenPatientUpdate'];
-        $changeUserPU = $_POST['changePatientUser'];
+        // $changeUserPU = $_POST['changePatientUser'];
 
         $patientID = $_POST['patientID'];
         // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$patientID'";
@@ -74,9 +74,6 @@
             if(mysqli_num_rows($result) == 0) {
                 echo "Error: This user does not exist. Please verify the info you have input and try again.";
             }
-            // else if($checkID != 1) {
-            //     echo "Error: This user is not a patient";
-            // }
             else {
 
                 $checkID = "SELECT User_Type FROM user WHERE User_ID = '$patientID'";
@@ -117,9 +114,9 @@
                         $count = 1;
                     }
 
-                    if (!empty($changeUserPU)) {
-                        $query .= "User_Type='$changeUserPU',";
-                    }
+                    // if (!empty($changeUserPU)) {
+                    //     $query .= "User_Type='$changeUserPU',";
+                    // }
 
                     $query = rtrim($query, ","); // Remove the trailing comma
                     $query .= " WHERE User_ID='$patientID'";
@@ -240,10 +237,10 @@
             <input type="text" name="allergenPatientUpdate">
         </div>
 
-        <div>
+        <!-- <div>
             <label for="changePatientUser">User Type</label>
             <input type="text" name="changePatientUser">
-        </div>
+        </div> -->
 
         <div>
             <input type="submit" name="submit" value="Save Changes">
