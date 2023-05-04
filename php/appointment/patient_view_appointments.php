@@ -9,26 +9,7 @@ session_start();
 <html>
 <head>
 	<title>View Appointments</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		th, td {
-			text-align: left;
-			padding: 8px;
-		}
-
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-	</style>
+	<link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <h1>Patient <?php echo $_SESSION['fname']; ?></h1>
