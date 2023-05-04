@@ -12,12 +12,11 @@
 </head>
 <body>
 <h1>Hello, Dr. <?php echo $_SESSION['lname']; ?>!</h1>
-	<h2>Viewing Your Reviews | <a href="../doctor_home.php">Home</a></h2>
+	<h2><a href="../doctor_home.php">Home</a> | Viewing Your Reviews</h2>
 
 	<table>
 		<tr>
-			<th>Patient's First Name</th>
-			<th>Patient's Last Name</th>
+			<th>Patient</th>
 			<th>Date</th>
             <th>5 Star Rating</th>
 			<th>Review</th>
@@ -44,9 +43,9 @@
 		// Loop through the results and display the details
 		while ($row = mysqli_fetch_assoc($result)) {
 			
-			// Fetch the Doctor's Last Name
+			// Fetch the patient's name
 			$patient_id = $row['Patient_ID'];
-			$patient_query = "SELECT * FROM user where User_ID = $patient_id";
+			$patient_query = "SELECT * FROM user where User_ID = '$patient_id'";
 			$patient_result = mysqli_query($conn, $patient_query);
 			$patient_row = mysqli_fetch_assoc($patient_result);
 			
@@ -61,20 +60,21 @@
 			// Display info on table
 			echo "<tr>";
 			//echo "<td>" . $Appointment_ID . "</td>";
-			echo "<td>" . $Patient_FName . "</td>";
-			echo "<td>" . $Patient_LName . "</td>";
+			echo "<td>" . $Patient_FName . " " . $Patient_LName . "</td>";
 			echo "<td>" . $Appointment_Date . "</td>";
 			echo "<td>" . ($Star_Rating ? $Star_Rating : "No rating yet...") . "</td>";
 			echo "<td>" . ($Feedback_Text ? $Feedback_Text : "No review yet...") . "</td>";
 			echo "</tr>";
 
 		}
-		
-		echo "</table>";
 
 		// Close the database connection
 		mysqli_close($conn);
 
 		?>
+	</table>
+
+	<br><hr><br>
+	
 </body>
 </html>
