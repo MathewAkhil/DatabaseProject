@@ -1,4 +1,8 @@
 <?php
+// Developed by Akhil Mathew
+// Gets information from index.php and makes sure that email and password match with
+// what is in the database. If so, the user will be redirected to the appropriate home
+// page based on user type.
 session_start();
 include "db_conn.php";
 

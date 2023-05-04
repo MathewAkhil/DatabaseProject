@@ -1,4 +1,7 @@
 <?php
+// Developed by Akhil Mathew
+// This is the profile page for the patients. They can update their information and
+// that update will be reflected in the database. They can also delete their account
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     session_start();

@@ -1,4 +1,7 @@
 <?php
+// Developed by Akhil Mathew
+// This is when the admin chooses the patient user type. They can see all current
+// patient profiles and edit any account's information or delete an account.
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     session_start();

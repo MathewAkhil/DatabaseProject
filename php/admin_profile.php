@@ -1,4 +1,7 @@
 <?php
+// Developed by Akhil Mathew
+// On this page, the admin will choose which user type they want to view and change
+// based on that, they are redirected to the right page.
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     session_start();

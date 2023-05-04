@@ -1,4 +1,7 @@
 <?php
+// Developed by Akhil Mathew
+// The information from signup.php is sent here and added into the database if
+// everything is entered correctly. Then redirected back to index.php to login
 include "db_conn.php";
 
 // Get the form data

@@ -1,5 +1,6 @@
 <?php
-
+// Developed by Akhil Mathew
+// Gets all the basic user information and sends it to process-signup.php
 session_start();
 include "db_conn.php";
 

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!-- Developed by Akhil Mathew
+This is the starting page. User will be asked for login info and then redirected to 
+login.php or they can click signup and be redirected to signup.php -->
 <html>
 <head>
     <title> LOGIN </title>

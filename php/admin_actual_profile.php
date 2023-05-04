@@ -1,4 +1,8 @@
 <?php
+// Developed by Akhil Mathew
+// This is when the admin chooses the admin user type. They can see all current
+// admin profiles (including thiers) and edit any of account's information or 
+// delete their account.
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     session_start();
