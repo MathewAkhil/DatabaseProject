@@ -100,7 +100,7 @@
                     $doctorQuery = "UPDATE doctor SET Doctor_Speciality='$specialityDU' WHERE User_ID='$doctorID'";
                     $result2 = mysqli_query($conn, $doctorQuery);
                 }
-                header("Location: doctor_home.php");
+                header("Location: doctor_profile.php");
             }
         }
     }
@@ -113,6 +113,64 @@
 <body>
 
 <h1>Profile Page</h1>
+    <h2>Doctor Information</h2>
+        <?php
+            // Shows a table of all user data in the database that are doctors
+            // Include the database connection file
+            require_once('db_conn.php');
+            $doctorID = $_SESSION['id'];
+            
+            $sql5 = "SELECT * FROM `user` WHERE User_ID = '$doctorID'";
+            $result5 = mysqli_query($conn, $sql5);
+            
+            if ($result5->num_rows > 0) {
+                echo "<table>";
+                echo "<tr><th>User ID</th><th>Email</th><th>Password</th><th>First Name</th><th>Last Name</th><th>DOB</th><th>User Type</th></tr>";
+            
+                while($row = $result5->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["User_ID"] . "</td>";
+                    echo "<td>" . $row["User_Email"] . "</td>";
+                    echo "<td>" . $row["User_Password"] . "</td>";
+                    echo "<td>" . $row["User_FName"] . "</td>";
+                    echo "<td>" . $row["User_LName"] . "</td>";
+                    echo "<td>" . $row["User_DOB"] . "</td>";
+                    echo "<td>" . $row["User_Type"] . "</td>";
+                    echo "</tr>";
+                }
+                
+                echo "</table>";
+            } else {
+                echo "Error retrieving account information";
+            }
+        ?>
+
+    <h2>Doctor Specialties</h2>
+        <?php
+            // Displays the doctor table
+            // Include the database connection file
+            require_once('db_conn.php');
+            $doctorID = $_SESSION['id'];
+            
+            $sql6 = "SELECT * FROM `doctor` WHERE User_ID = '$doctorID'";
+            $result6 = mysqli_query($conn, $sql6);
+            
+            if ($result6->num_rows > 0) {
+                echo "<table>";
+                echo "<tr><th>User ID</th><th>Doctor Speciality</th></tr>";
+            
+                while($row = $result6->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["User_ID"] . "</td>";
+                    echo "<td>" . $row["Doctor_Speciality"] . "</td>";
+                    echo "</tr>";
+                }
+                
+                echo "</table>";
+            } else {
+                echo "Error retrieving account information";
+            }
+        ?>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 
         <div>
