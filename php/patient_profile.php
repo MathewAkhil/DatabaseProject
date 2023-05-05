@@ -46,7 +46,7 @@
         $allergenPU = $_POST['allergenPatientUpdate'];
 
 
-        // Check if there is already a review for this appointment
+        // Error Checking
         if(empty($fnamePU) && empty($lnamePU) && empty($emailPU) && empty($passwordPU) && empty($dobPU) && empty($allergenPU)){
             header("Location: patient_profile.php");
         }

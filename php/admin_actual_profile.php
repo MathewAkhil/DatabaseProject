@@ -3,6 +3,8 @@
 // This is when the admin chooses the admin user type. They can see all current
 // admin profiles (including thiers) and edit any of account's information or 
 // delete their account.
+
+    // Error checking
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     session_start();
@@ -10,8 +12,7 @@
     // Include the database connection file
     require_once('db_conn.php');
 
-    // $doctorID = $_POST['doctorID'];
-
+    // If add admin is clicked, do this
     if(isset($_POST['add'])) {
         $user_typeAU = 0;
         $fnameDU = $_POST['fnameAdminUpdate'];
@@ -20,6 +21,7 @@
         $passwordDU = $_POST['passwordAdminUpdate'];
         $dobDU = $_POST['dobAdminUpdate'];
 
+        // Error checking
         if(empty($fnameDU) && empty($lnameDU) && empty($emailDU) && empty($passwordDU) && empty($dobDU)){
             header("Location: admin_actual_profile.php");
         }
@@ -38,16 +40,17 @@
         }
     }
 
+    // If delete is clicked, do this
     if(isset($_POST['delete'])) {
 
-        // Get the form data
         $adminID = $_POST['adminID'];
-        // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$doctorID'";
+
+        //Error checking
         if(empty($adminID)) {
             header("Location: admin_actual_profile.php");
         }
 
-        // Check if there is already a user
+        // Check if the user exists
         $query = "SELECT * FROM user WHERE User_ID = '$adminID'";
         $result = mysqli_query($conn, $query);
 
@@ -64,12 +67,12 @@
             $row = mysqli_fetch_assoc($result);
             $userType = $row['User_Type'];
             
+            // error checking
             if($userType != 0) {
-                // echo $userType;
                 echo "Error: This user is not an admin";
             }
             else {
-                // Delete the review data in the database
+                // Delete the admin data in the database
                 $query1 = "DELETE FROM user WHERE User_ID = $adminID";
                 $result1 = mysqli_query($conn, $query1);
 
@@ -84,6 +87,7 @@
             }
         }
     }
+
     // Check if the form has been submitted
     if(isset($_POST['submit'])) {
 
@@ -94,14 +98,12 @@
         $emailDU = $_POST['emailAdminUpdate'];
         $passwordDU = $_POST['passwordAdminUpdate'];
         $dobDU = $_POST['dobAdminUpdate'];
-        // $changeUserAU = $_POST['changeAdminUser'];
 
         if(empty($adminID)) {
             header("Location: admin_actual_profile.php");
         }
 
-
-        // Check if there is already a review for this appointment
+        // Error checking
         if(empty($fnameDU) && empty($lnameDU) && empty($emailDU) && empty($passwordDU) && empty($dobDU) && empty($changeUserAU)){
             header("Location: admin_actual_profile.php");
         }
@@ -121,7 +123,6 @@
                 $userType = $row['User_Type'];
 
                 if($userType != 0) {
-                    // echo $userType;
                     echo "Error: This user is not an admin";
                 }
                 else {
@@ -151,10 +152,6 @@
                         $query .= "User_DOB='$dobDU',";
                     }
 
-                    // if (!empty($changeUserAU)) {
-                    //     $query .= "User_Type='$changeUserAU',";
-                    // }
-
                     $query = rtrim($query, ","); // Remove the trailing comma
                     $query .= " WHERE User_ID='$adminID'";
                     
@@ -175,11 +172,12 @@
 <h1>Profile Page</h1>
     <h2>Admin Information</h2>
             <?php
+                // This part will print out a table of all admin profiles in the database
+
                 // Include the database connection file
                 require_once('db_conn.php');
                 
                 $sql5 = "SELECT * FROM `user` WHERE User_Type = '0'";
-                // $sql5 = "SELECT * FROM `user`";
                 $result5 = mysqli_query($conn, $sql5);
                 
                 if ($result5->num_rows > 0) {
@@ -234,11 +232,6 @@
             <label for="dobAdminUpdate">DOB</label>
             <input type="date" name="dobAdminUpdate">
         </div>
-
-        <!-- <div>
-            <label for="changeAdminUser">User Type</label>
-            <input type="text" name="changeAdminUser">
-        </div> -->
 
         <div>
             <input type="submit" name="submit" value="Save Changes">

@@ -46,7 +46,6 @@ include "db_conn.php";
             <input type="text" id="typeRegister" name="typeRegister" required>
         </div>
 
-        <!-- <button><a href="index.php">Back to Login</a></button> -->
         <button>Sign up</button>
     </form>
     

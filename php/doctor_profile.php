@@ -9,6 +9,7 @@
     // Include the database connection file
     require_once('db_conn.php');
 
+    // If the delete button is clicked, do this
     if(isset($_POST['delete'])) {
 
         // Get the form data
@@ -24,7 +25,7 @@
             echo "Error: This account does not exist";
         }
         else {
-            // Delete the review data in the database
+            // Delete the doctor data in the database
             $query1 = "DELETE FROM user WHERE User_ID = $doctorID";
             $result1 = mysqli_query($conn, $query1);
 
@@ -46,7 +47,7 @@
         $specialityDU = $_POST['specialityDoctorUpdate'];
 
 
-        // Check if there is already a review for this appointment
+        // Error checking
         if(empty($fnameDU) && empty($lnameDU) && empty($emailDU) && empty($passwordDU) && empty($dobDU) && empty($specialityDU)){
             header("Location: doctor_profile.php");
         }

@@ -9,6 +9,7 @@
     // Include the database connection file
     require_once('db_conn.php');
 
+    // If submit is clicked, then go to the correct php file
     if(isset($_POST['submit'])) {
         $userType = $_POST['userType'];
 

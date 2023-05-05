@@ -9,7 +9,7 @@
     // Include the database connection file
     require_once('db_conn.php');
 
-    
+    // If add patient is clicked, do this
     if(isset($_POST['add'])) {
         $user_typePU = 1;
         $fnamePU = $_POST['fnamePatientUpdate'];
@@ -19,6 +19,7 @@
         $dobPU = $_POST['dobPatientUpdate'];
         $allergenPU = $_POST['allergenPatientUpdate'];
 
+        // Error checking
         if(empty($fnamePU) && empty($lnamePU) && empty($emailPU) && empty($passwordPU) && empty($dobPU) && empty($allergenPU) && empty($changeUserPU)){
             header("Location: admin_patient_profile.php");
         }
@@ -43,11 +44,11 @@
         }
     }
 
+    // If delete button is clicked, do this
     if(isset($_POST['delete'])) {
 
         // Get the form data
         $patientID = $_POST['patientID'];
-        // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$patientID'";
         if(empty($patientID)) {
             header("Location: admin_patient_profile.php");
         }
@@ -61,9 +62,6 @@
         if(mysqli_num_rows($result) == 0 && mysqli_num_rows($r) == 0) {
             echo "Error: This account does not exist";
         }
-        // else if($checkID != 1) {
-        //     echo "Error: This user is not a patient";
-        // }
         else {
 
             $checkID = "SELECT User_Type FROM user WHERE User_ID = '$patientID'";
@@ -73,11 +71,10 @@
             $userType = $row['User_Type'];
             
             if($userType != 1) {
-                // echo $userType;
                 echo "Error: This user is not a patient";
             }
             else {
-                // Delete the review data in the database
+                // Delete the patient data in the database
                 $query1 = "DELETE FROM user WHERE User_ID = $patientID";
                 $result1 = mysqli_query($conn, $query1);
 
@@ -91,23 +88,20 @@
     if(isset($_POST['submit'])) {
 
         // Get the form data
-        // $patientID = $_POST['patientID'];
         $fnamePU = $_POST['fnamePatientUpdate'];
         $lnamePU = $_POST['lnamePatientUpdate'];
         $emailPU = $_POST['emailPatientUpdate'];
         $passwordPU = $_POST['passwordPatientUpdate'];
         $dobPU = $_POST['dobPatientUpdate'];
         $allergenPU = $_POST['allergenPatientUpdate'];
-        // $changeUserPU = $_POST['changePatientUser'];
 
         if(empty($patientID)) {
             header("Location: admin_patient_profile.php");
         }
 
         $patientID = $_POST['patientID'];
-        // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$patientID'";
 
-        // Check if there is already a review for this appointment
+        // Error checking
         if(empty($fnamePU) && empty($lnamePU) && empty($emailPU) && empty($passwordPU) && empty($dobPU) && empty($allergenPU) && empty($changeUserPU)){
             header("Location: admin_patient_profile.php");
         }
@@ -127,7 +121,6 @@
                 $userType = $row['User_Type'];
                 
                 if($userType != 1) {
-                    // echo $userType;
                     echo "Error: This user is not a patient";
                 }
                 else {
@@ -158,10 +151,6 @@
                         $count = 1;
                     }
 
-                    // if (!empty($changeUserPU)) {
-                    //     $query .= "User_Type='$changeUserPU',";
-                    // }
-
                     $query = rtrim($query, ","); // Remove the trailing comma
                     $query .= " WHERE User_ID='$patientID'";
                     
@@ -189,11 +178,11 @@
 <h1>Profile Page</h1>
     <h2>Doctor Information</h2>
         <?php
+            // Shows a table of the users that are patients
             // Include the database connection file
             require_once('db_conn.php');
             
             $sql5 = "SELECT * FROM `user` WHERE User_Type = '1'";
-            // $sql5 = "SELECT * FROM `user`";
             $result5 = mysqli_query($conn, $sql5);
             
             if ($result5->num_rows > 0) {
@@ -220,11 +209,11 @@
 
         <h2>Patient Information</h2>
             <?php
+                // Displays a table of the patients
                 // Include the database connection file
                 require_once('db_conn.php');
                 
                 $sql6 = "SELECT * FROM `patient`";
-                // $sql5 = "SELECT * FROM `user`";
                 $result6 = mysqli_query($conn, $sql6);
                 
                 if ($result6->num_rows > 0) {
@@ -280,11 +269,6 @@
             <label for="allergenPatientUpdate">Allergens</label>
             <input type="text" name="allergenPatientUpdate">
         </div>
-
-        <!-- <div>
-            <label for="changePatientUser">User Type</label>
-            <input type="text" name="changePatientUser">
-        </div> -->
 
         <div>
             <input type="submit" name="submit" value="Save Changes">

@@ -9,8 +9,7 @@
     // Include the database connection file
     require_once('db_conn.php');
 
-    // $doctorID = $_POST['doctorID'];
-
+    // If add doctor is clicked, do this
     if(isset($_POST['add'])) {
         $user_typeDU = 2;
         $fnameDU = $_POST['fnameDoctorUpdate'];
@@ -20,6 +19,7 @@
         $dobDU = $_POST['dobDoctorUpdate'];
         $specialityDU = $_POST['specialityDoctorUpdate'];
 
+        // error checking
         if(empty($fnameDU) && empty($lnameDU) && empty($emailDU) && empty($passwordDU) && empty($dobDU) && empty($specialityDU)){
             header("Location: admin_doctor_profile.php");
         }
@@ -44,6 +44,7 @@
         }
     }
 
+    // If delete button is clicked, do this
     if(isset($_POST['delete'])) {
 
         // Get the form data
@@ -51,7 +52,6 @@
         if(empty($doctorID)) {
             header("Location: admin_doctor_profile.php");
         }
-        // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$doctorID'";
 
         // Check if there is already a user
         $query = "SELECT * FROM user WHERE User_ID = '$doctorID'";
@@ -62,9 +62,6 @@
         if(mysqli_num_rows($result) == 0 && mysqli_num_rows($r) == 0) {
             echo "Error: This account does not exist";
         }
-        // else if($checkID != 2) {
-        //     echo "Error: This user is not a doctor";
-        // }
         else {
 
             $checkID = "SELECT User_Type FROM user WHERE User_ID = '$doctorID'";
@@ -74,11 +71,10 @@
             $userType = $row['User_Type'];
             
             if($userType != 2) {
-                // echo $userType;
                 echo "Error: This user is not a doctor";
             }
             else {
-                // Delete the review data in the database
+                // Delete the doctor data in the database
                 $query1 = "DELETE FROM user WHERE User_ID = $doctorID";
                 $result1 = mysqli_query($conn, $query1);
 
@@ -106,7 +102,7 @@
         }
 
 
-        // Check if there is already a review for this appointment
+        // Error checking
         if(empty($fnameDU) && empty($lnameDU) && empty($emailDU) && empty($passwordDU) && empty($dobDU) && empty($specialityDU)){
             header("Location: admin_doctor_profile.php");
         }
@@ -117,9 +113,6 @@
             if(mysqli_num_rows($result) == 0) {
                 echo "Error: This user does not exist. Please verify the info you have input and try again.";
             }
-            // else if($checkID != 2) {
-            //     echo "Error: This user is not a doctor";
-            // }
             else {
 
                 $checkID = "SELECT User_Type FROM user WHERE User_ID = '$doctorID'";
@@ -129,7 +122,6 @@
                 $userType = $row['User_Type'];
 
                 if($userType != 2) {
-                    // echo $userType;
                     echo "Error: This user is not a doctor";
                 }
                 else {
@@ -188,11 +180,11 @@
 <h1>Profile Page</h1>
 <h2>Doctor Information</h2>
     <?php
+        // Shows a table of all user data in the database that are doctors
         // Include the database connection file
         require_once('db_conn.php');
         
         $sql5 = "SELECT * FROM `user` WHERE User_Type = '2'";
-        // $sql5 = "SELECT * FROM `user`";
         $result5 = mysqli_query($conn, $sql5);
         
         if ($result5->num_rows > 0) {
@@ -219,11 +211,11 @@
 
     <h2>Doctor Specialties</h2>
         <?php
+            // Displays the doctor table
             // Include the database connection file
             require_once('db_conn.php');
             
             $sql6 = "SELECT * FROM `doctor`";
-            // $sql5 = "SELECT * FROM `user`";
             $result6 = mysqli_query($conn, $sql6);
             
             if ($result6->num_rows > 0) {

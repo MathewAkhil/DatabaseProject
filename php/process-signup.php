@@ -18,8 +18,6 @@ $result = mysqli_query($conn, $sql);
 
 if ($result) {
     echo "Account Successfully Created!";
-    // header("Location: index.php");
-    // exit();
 } else {
     echo "Error creating account: " . mysqli_error($conn);
 }
@@ -28,7 +26,6 @@ if ($result) {
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- <button><a href="index.php">Back to Login</a></button> -->
     <form method="post" action="index.php">
         <button type="submit">Go to Login</button>
     </form>
