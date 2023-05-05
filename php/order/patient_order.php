@@ -61,7 +61,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             
             echo "</table>";
         } else {
-            echo "0 results";
+            echo "0 results. Here is the Drug Table";
         }
         
         
