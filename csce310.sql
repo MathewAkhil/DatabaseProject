@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2023 at 11:34 PM
+-- Generation Time: May 06, 2023 at 12:51 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -114,6 +114,15 @@ CREATE TABLE `drug` (
   `Drug_Name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `drug`
+--
+
+INSERT INTO `drug` (`Drug_ID`, `Drug_Quantity`, `Drug_Name`) VALUES
+(12121212, 500, 'Claritin'),
+(13131313, 200, 'Ibuprofen'),
+(14141414, 500, 'Penicillin');
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +135,16 @@ CREATE TABLE `order` (
   `Patient_ID` int(10) NOT NULL,
   `Pharmacy_ID` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`Order_ID`, `Doctor_ID`, `Patient_ID`, `Pharmacy_ID`) VALUES
+(12345678, 200, 100, 1),
+(30303030, 203, 103, 2),
+(40404040, 200, 101, 2),
+(56756756, 203, 101, 1);
 
 -- --------------------------------------------------------
 
@@ -182,6 +201,16 @@ CREATE TABLE `prescription` (
   `Drug_ID` int(11) NOT NULL,
   `Prescription_Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `prescription`
+--
+
+INSERT INTO `prescription` (`Prescription_ID`, `Order_ID`, `Drug_ID`, `Prescription_Quantity`) VALUES
+(1453567, 30303030, 13131313, 19),
+(9877898, 56756756, 12121212, 15),
+(10101010, 12345678, 12121212, 20),
+(12312312, 12345678, 14141414, 21);
 
 -- --------------------------------------------------------
 
@@ -334,13 +363,13 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `drug`
 --
 ALTER TABLE `drug`
-  MODIFY `Drug_ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `Drug_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14141415;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56756757;
 
 --
 -- AUTO_INCREMENT for table `pharmacy`
@@ -352,7 +381,7 @@ ALTER TABLE `pharmacy`
 -- AUTO_INCREMENT for table `prescription`
 --
 ALTER TABLE `prescription`
-  MODIFY `Prescription_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Prescription_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12312313;
 
 --
 -- AUTO_INCREMENT for table `review`
