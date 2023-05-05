@@ -42,6 +42,27 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         } else {
             echo "0 results";
         }
+        ?>
+        <br>
+        Available Pharmacies
+        <?php
+        // Create a query and only get the Orders with the Patient_ID
+        $sql = "SELECT * FROM `Pharmacy`";
+        // Execute the query and fetch the result
+        $result = mysqli_query($conn, $sql);
+        
+        if ($result->num_rows > 0) {
+            echo "<table>";
+            echo "<tr><th>Pharmacy ID</th><th>Pharmacy Name</th></tr>";
+        
+            while($row = $result->fetch_assoc()) {
+                echo "<tr><td>" . $row["Pharmacy_ID"] . "</td><td>" . $row["Pharmacy_Name"] .  "</td></tr>";
+            }
+            
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
         
         
         // entering the Order_ID to display the asociated prescriptions
