@@ -12,11 +12,40 @@
 
     // $doctorID = $_POST['doctorID'];
 
+    if(isset($_POST['add'])) {
+        $user_typeAU = 0;
+        $fnameDU = $_POST['fnameAdminUpdate'];
+        $lnameDU = $_POST['lnameAdminUpdate'];
+        $emailDU = $_POST['emailAdminUpdate'];
+        $passwordDU = $_POST['passwordAdminUpdate'];
+        $dobDU = $_POST['dobAdminUpdate'];
+
+        if(empty($fnameDU) && empty($lnameDU) && empty($emailDU) && empty($passwordDU) && empty($dobDU)){
+            header("Location: admin_actual_profile.php");
+        }
+        else if(empty($fnameDU) || empty($lnameDU) || empty($emailDU) || empty($passwordDU) || empty($dobDU)){
+            echo 'Please input all information to add a new admin';
+        }
+        else {
+            $addSQL = "INSERT INTO User (User_Email, User_Password, User_FName, User_LName, User_DOB, User_Type) VALUES ('$emailDU', '$passwordDU', '$fnameDU', '$lnameDU', '$dobDU', '$user_typeAU')";
+            $resultAdd = mysqli_query($conn, $addSQL);
+
+            if ($resultAdd) {
+                echo "Account Successfully Added!";
+            } else {
+                echo "Error creating account: " . mysqli_error($conn);
+            }
+        }
+    }
+
     if(isset($_POST['delete'])) {
 
         // Get the form data
         $adminID = $_POST['adminID'];
         // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$doctorID'";
+        if(empty($adminID)) {
+            header("Location: admin_actual_profile.php");
+        }
 
         // Check if there is already a user
         $query = "SELECT * FROM user WHERE User_ID = '$adminID'";
@@ -66,6 +95,10 @@
         $passwordDU = $_POST['passwordAdminUpdate'];
         $dobDU = $_POST['dobAdminUpdate'];
         // $changeUserAU = $_POST['changeAdminUser'];
+
+        if(empty($adminID)) {
+            header("Location: admin_actual_profile.php");
+        }
 
 
         // Check if there is already a review for this appointment
@@ -174,7 +207,7 @@
 
         <div>
             <label for="adminID">User ID</label>
-            <input type="text" name="adminID" required>
+            <input type="text" name="adminID">
         </div>
 
         <div>
@@ -209,6 +242,10 @@
 
         <div>
             <input type="submit" name="submit" value="Save Changes">
+        </div>
+
+        <div>
+            <input type="submit" name="add" value="Add Admin">
         </div>
 
         <br></br>

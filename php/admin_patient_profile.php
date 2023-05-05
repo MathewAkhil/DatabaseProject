@@ -9,11 +9,48 @@
     // Include the database connection file
     require_once('db_conn.php');
 
+    
+    if(isset($_POST['add'])) {
+        $user_typePU = 1;
+        $fnamePU = $_POST['fnamePatientUpdate'];
+        $lnamePU = $_POST['lnamePatientUpdate'];
+        $emailPU = $_POST['emailPatientUpdate'];
+        $passwordPU = $_POST['passwordPatientUpdate'];
+        $dobPU = $_POST['dobPatientUpdate'];
+        $allergenPU = $_POST['allergenPatientUpdate'];
+
+        if(empty($fnamePU) && empty($lnamePU) && empty($emailPU) && empty($passwordPU) && empty($dobPU) && empty($allergenPU) && empty($changeUserPU)){
+            header("Location: admin_patient_profile.php");
+        }
+        else if(empty($fnamePU) || empty($lnamePU) || empty($emailPU) || empty($passwordPU) || empty($dobPU) || empty($allergenPU)){
+            echo 'Please input all information to add a new patient';
+        }
+        else {
+            $addSQL = "INSERT INTO User (User_Email, User_Password, User_FName, User_LName, User_DOB, User_Type) VALUES ('$emailPU', '$passwordPU', '$fnamePU', '$lnamePU', '$dobPU', '$user_typePU')";
+            $resultAdd = mysqli_query($conn, $addSQL);
+
+            
+            $lastUser = mysqli_insert_id($conn);
+
+            $addPat = "UPDATE patient SET Patient_Allergens = '$allergenPU' WHERE user_id = '$lastUser'";
+            $resultPat = mysqli_query($conn, $addPat);
+
+            if ($resultAdd) {
+                echo "Account Successfully Added!";
+            } else {
+                echo "Error creating account: " . mysqli_error($conn);
+            }
+        }
+    }
+
     if(isset($_POST['delete'])) {
 
         // Get the form data
         $patientID = $_POST['patientID'];
         // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$patientID'";
+        if(empty($patientID)) {
+            header("Location: admin_patient_profile.php");
+        }
         
         // Check if there is already a user
         $query = "SELECT * FROM user WHERE User_ID = '$patientID'";
@@ -62,6 +99,10 @@
         $dobPU = $_POST['dobPatientUpdate'];
         $allergenPU = $_POST['allergenPatientUpdate'];
         // $changeUserPU = $_POST['changePatientUser'];
+
+        if(empty($patientID)) {
+            header("Location: admin_patient_profile.php");
+        }
 
         $patientID = $_POST['patientID'];
         // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$patientID'";
@@ -207,7 +248,7 @@
 
         <div>
             <label for="patientID">User ID</label>
-            <input type="text" name="patientID" required>
+            <input type="text" name="patientID">
         </div>
 
         <div>
@@ -247,6 +288,10 @@
 
         <div>
             <input type="submit" name="submit" value="Save Changes">
+        </div>
+
+        <div>
+            <input type="submit" name="add" value="Add Patient">
         </div>
 
         <br></br>

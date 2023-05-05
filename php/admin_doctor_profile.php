@@ -11,10 +11,46 @@
 
     // $doctorID = $_POST['doctorID'];
 
+    if(isset($_POST['add'])) {
+        $user_typeDU = 2;
+        $fnameDU = $_POST['fnameDoctorUpdate'];
+        $lnameDU = $_POST['lnameDoctorUpdate'];
+        $emailDU = $_POST['emailDoctorUpdate'];
+        $passwordDU = $_POST['passwordDoctorUpdate'];
+        $dobDU = $_POST['dobDoctorUpdate'];
+        $specialityDU = $_POST['specialityDoctorUpdate'];
+
+        if(empty($fnameDU) && empty($lnameDU) && empty($emailDU) && empty($passwordDU) && empty($dobDU) && empty($specialityDU)){
+            header("Location: admin_doctor_profile.php");
+        }
+        else if(empty($fnameDU) || empty($lnameDU) || empty($emailDU) || empty($passwordDU) || empty($dobDU) || empty($specialityDU)){
+            echo 'Please input all information to add a new doctor';
+        }
+        else {
+            $addSQL = "INSERT INTO User (User_Email, User_Password, User_FName, User_LName, User_DOB, User_Type) VALUES ('$emailDU', '$passwordDU', '$fnameDU', '$lnameDU', '$dobDU', '$user_typeDU')";
+            $resultAdd = mysqli_query($conn, $addSQL);
+
+            
+            $lastUser = mysqli_insert_id($conn);
+
+            $addDoc = "UPDATE doctor SET Doctor_Speciality = '$specialityDU' WHERE user_id = '$lastUser'";
+            $resultDoc = mysqli_query($conn, $addDoc);
+
+            if ($resultAdd) {
+                echo "Account Successfully Added!";
+            } else {
+                echo "Error creating account: " . mysqli_error($conn);
+            }
+        }
+    }
+
     if(isset($_POST['delete'])) {
 
         // Get the form data
         $doctorID = $_POST['doctorID'];
+        if(empty($doctorID)) {
+            header("Location: admin_doctor_profile.php");
+        }
         // $checkID = "SELECT User_Type FROM user WHERE User_ID = '$doctorID'";
 
         // Check if there is already a user
@@ -63,6 +99,11 @@
         $passwordDU = $_POST['passwordDoctorUpdate'];
         $dobDU = $_POST['dobDoctorUpdate'];
         $specialityDU = $_POST['specialityDoctorUpdate'];
+
+        $doctorID = $_POST['doctorID'];
+        if(empty($doctorID)) {
+            header("Location: admin_doctor_profile.php");
+        }
 
 
         // Check if there is already a review for this appointment
@@ -205,7 +246,7 @@
 
         <div>
             <label for="doctorID">User ID</label>
-            <input type="text" name="doctorID" required>
+            <input type="text" name="doctorID">
         </div>
 
         <div>
@@ -241,6 +282,11 @@
         <div>
             <input type="submit" name="submit" value="Save Changes">
         </div>
+
+        <div>
+            <input type="submit" name="add" value="Add Doctor">
+        </div>
+
 
         <br></br>
         <div>
