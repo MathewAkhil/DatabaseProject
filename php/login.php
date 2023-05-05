@@ -1,4 +1,8 @@
 <?php
+// Developed by Akhil Mathew
+// Gets information from index.php and makes sure that email and password match with
+// what is in the database. If so, the user will be redirected to the appropriate home
+// page based on user type.
 session_start();
 include "db_conn.php";
 
@@ -16,7 +20,7 @@ $uname = validate($_POST['uname']);
 $pass = validate($_POST['password']);
 
 if(empty($uname)) {
-    header ("Location: index.php?error=User Name is required"); #erro
+    header ("Location: index.php?error=User Name is required"); # Error checking
     exit();
 }
 else if(empty($pass)) {
@@ -24,7 +28,7 @@ else if(empty($pass)) {
     exit();
 }
 
-$sql = "SELECT * FROM USER WHERE User_Email='$uname' AND User_Password='$pass'"; # CHANGE THIS AFTER SPECIALIZATION IS IMPLEMENTED
+$sql = "SELECT * FROM USER WHERE User_Email='$uname' AND User_Password='$pass'";
 
 $result = mysqli_query($conn, $sql);
 
@@ -37,8 +41,8 @@ if(mysqli_num_rows($result) === 1) {
         $_SESSION['id'] = $row['User_ID'];
         $_SESSION['lname'] = $row['User_LName'];
         $_SESSION['user_type'] = $row['User_Type'];
-        //header("Location: home.php");
-        //exit();
+        $_SESSION['pass'] = $row['User_Password'];
+        $_SESSION['dob'] = $row['User_DOB'];
 
         if($row['User_Type'] === '2') {
             header("Location: doctor_home.php");

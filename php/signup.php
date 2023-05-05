@@ -1,5 +1,6 @@
 <?php
-
+// Developed by Akhil Mathew
+// Gets all the basic user information and sends it to process-signup.php
 session_start();
 include "db_conn.php";
 
@@ -45,7 +46,6 @@ include "db_conn.php";
             <input type="text" id="typeRegister" name="typeRegister" required>
         </div>
 
-        <!-- <button><a href="index.php">Back to Login</a></button> -->
         <button>Sign up</button>
     </form>
     

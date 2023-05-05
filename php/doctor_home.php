@@ -1,4 +1,6 @@
 <?php
+// Developed by Akhil Mathew
+// Doctor home page that has links to redirect you to the appropriate php files
 session_start();
 
 if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
@@ -12,7 +14,11 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
+
         <h1>Hello, Dr. <?php echo $_SESSION['lname']; ?>!</h1>
+        <a href="doctor_profile.php">Profile</a>
+        <br><br>
+
         <a href="order/doctor_order.php">Orders</a>
         <br><br>
         <a href="appointment/doctor_appointment.php">Appointment</a>
@@ -26,7 +32,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <?php
 }
 else {
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 ?>

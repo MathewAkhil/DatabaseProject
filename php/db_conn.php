@@ -1,5 +1,6 @@
 <?php
-
+// Developed by Akhil Mathew
+// This file is used to connect to the database
     $sname = "localhost";
     $unmae = "root";
     $password = "";
