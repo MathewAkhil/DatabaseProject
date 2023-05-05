@@ -41,8 +41,8 @@ if(mysqli_num_rows($result) === 1) {
         $_SESSION['id'] = $row['User_ID'];
         $_SESSION['lname'] = $row['User_LName'];
         $_SESSION['user_type'] = $row['User_Type'];
-        $_SESSION['pass'] = $row['User_Password']
-        $_SESSION['dob'] = $row['User_DOB']
+        $_SESSION['pass'] = $row['User_Password'];
+        $_SESSION['dob'] = $row['User_DOB'];
 
         if($row['User_Type'] === '2') {
             header("Location: doctor_home.php");
