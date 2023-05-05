@@ -8,29 +8,14 @@
 <html>
 <head>
 	<title>Patient - View Reviews</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			text-align: left;
-			padding: 8px;
-		}
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-		h3 {text-align: center;}
-	</style>
+	<link rel="stylesheet" href="../styles.css">
 </head>
 	
 <body>
 <h1>Hello, Patient <?php echo $_SESSION['fname']; ?>!</h1>
-	<h2>Viewing Possible Reviews | <a href="../patient_home.php">Home</a></h2>
+	
+	<!-- Display Hotbar -->
+    <h2><a href="../patient_home.php">Home</a> | <a href="patient_reviews.php">View Reviews</a> | <a href="patient_add_review.php">Add Review</a> | <a href="patient_edit_review.php">Edit Review</a> | <a href="patient_delete_review.php">Delete Review</a></h2>
 
 	<table>
 		<tr>
@@ -88,11 +73,13 @@
 			echo "</tr>";
 			
 		}
-	
+		
 		// Close the database connection
 		mysqli_close($conn); ?>
 		
-		</table>
-	<h3><a href="patient_add_review.php">Add Review</a> | <a href="patient_edit_review.php">Edit Review</a> | <a href="patient_delete_review.php">Delete Review</a></h3>
+	</table>
+
+	<br><hr><br>
+
 </body>
 </html>

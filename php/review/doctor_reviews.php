@@ -7,43 +7,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../styles.css">
 	<title>Doctor - View Reviews</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		th, td {
-			text-align: left;
-			padding: 8px;
-		}
-
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-	</style>
 </head>
-	<a href="../doctor_home.php">Home</a>
 <body>
 <h1>Hello, Dr. <?php echo $_SESSION['lname']; ?>!</h1>
-	<h2>Viewing Your Reviews</h2>
+	<h2><a href="../doctor_home.php">Home</a> | Viewing Your Reviews</h2>
 
 	<table>
 		<tr>
-			<th>Patient's First Name</th>
-			<th>Patient's Last Name</th>
+			<th>Patient</th>
 			<th>Date</th>
             <th>5 Star Rating</th>
 			<th>Review</th>
 		</tr>
     
-		<!-- Let's fille the table -->
+		<!-- Let's fill the table -->
         <?php
 		
 		// Establish a connection to the database
@@ -64,9 +43,9 @@
 		// Loop through the results and display the details
 		while ($row = mysqli_fetch_assoc($result)) {
 			
-			// Fetch the Doctor's Last Name
+			// Fetch the patient's name
 			$patient_id = $row['Patient_ID'];
-			$patient_query = "SELECT * FROM user where User_ID = $patient_id";
+			$patient_query = "SELECT * FROM user where User_ID = '$patient_id'";
 			$patient_result = mysqli_query($conn, $patient_query);
 			$patient_row = mysqli_fetch_assoc($patient_result);
 			
@@ -81,18 +60,21 @@
 			// Display info on table
 			echo "<tr>";
 			//echo "<td>" . $Appointment_ID . "</td>";
-			echo "<td>" . $Patient_FName . "</td>";
-			echo "<td>" . $Patient_LName . "</td>";
+			echo "<td>" . $Patient_FName . " " . $Patient_LName . "</td>";
 			echo "<td>" . $Appointment_Date . "</td>";
 			echo "<td>" . ($Star_Rating ? $Star_Rating : "No rating yet...") . "</td>";
 			echo "<td>" . ($Feedback_Text ? $Feedback_Text : "No review yet...") . "</td>";
 			echo "</tr>";
 
 		}
-	
+
 		// Close the database connection
 		mysqli_close($conn);
 
 		?>
+	</table>
+
+	<br><hr><br>
+	
 </body>
 </html>
