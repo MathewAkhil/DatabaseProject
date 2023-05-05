@@ -46,7 +46,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         <br>
         Available Pharmacies
         <?php
-        // Create a query and only get the Orders with the Patient_ID
+        // Create a query and get the Pharmacy Table
         $sql = "SELECT * FROM `Pharmacy`";
         // Execute the query and fetch the result
         $result = mysqli_query($conn, $sql);
