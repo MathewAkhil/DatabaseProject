@@ -176,7 +176,7 @@
 <body>
 
 <h1>Profile Page</h1>
-    <h2>Doctor Information</h2>
+    <h2>Patient Information</h2>
         <?php
             // Shows a table of the users that are patients
             // Include the database connection file
